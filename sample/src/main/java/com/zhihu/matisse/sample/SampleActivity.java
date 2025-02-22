@@ -32,7 +32,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -61,20 +60,12 @@ public class SampleActivity extends AppCompatActivity implements View.OnClickLis
         recyclerView.setAdapter(mAdapter = new UriAdapter());
     }
 
-    // <editor-fold defaultstate="collapsed" desc="onClick">
+
     @SuppressLint("CheckResult")
     @Override
     public void onClick(final View v) {
-        RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(aBoolean -> {
-                    if (aBoolean) {
-                        startAction(v);
-                    } else {
-                        Toast.makeText(SampleActivity.this, R.string.permission_request_denied, Toast.LENGTH_LONG)
-                                .show();
-                    }
-                }, Throwable::printStackTrace);
+        startAction(v);
+
     }
     // </editor-fold>
 
